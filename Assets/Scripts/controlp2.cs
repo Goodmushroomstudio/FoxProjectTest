@@ -19,7 +19,7 @@ public class controlp2 : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (GameData.gd.AxisY>0.8f && jump)
+        if (GameData.gd.AxisY>0.95f && jump)
         {
             rb.AddForce(new Vector2(0, up), ForceMode2D.Impulse);
             jump = false;
