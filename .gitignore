@@ -4,3 +4,6 @@ FoxProject.sln
 FoxProject.apk
 Assembly-CSharp.csproj
 Fox.sln
+FoxProjectTest.sln
+FoxProjectTest.csproj
+Fox.csproj
