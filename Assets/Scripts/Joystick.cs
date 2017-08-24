@@ -29,24 +29,24 @@ public class Joystick : MonoBehaviour {
                 Vector2 magn = Input.mousePosition - joystickSprite.gameObject.transform.position; //вычисляем магнитуду между местом касания и текущей точкой курсора
                 Vector2 newPoint = Vector2.ClampMagnitude(magn, magnMax); // проверяем что бы длина магнитуды была не более указанного значения (20f...30f) Если более, возвращаем точку в которой магнитуда максимальная
                 stick.transform.localPosition = newPoint;
-                GameData.gd.AxisX = stick.transform.localPosition.x / magnMax;
-                GameData.gd.AxisY = stick.transform.localPosition.y / magnMax;
+                GameData.gd.f_axisX = stick.transform.localPosition.x / magnMax;
+                GameData.gd.f_axisY = stick.transform.localPosition.y / magnMax;
             }
         }
         else if (Input.GetMouseButton(0))
         {
             if (joystickSprite.enabled && Input.mousePosition.x < Screen.width / 2)
             {
-                GameData.gd.AxisX = stick.transform.localPosition.x / magnMax;
-                GameData.gd.AxisY = stick.transform.localPosition.y / magnMax;
+                GameData.gd.f_axisX = stick.transform.localPosition.x / magnMax;
+                GameData.gd.f_axisY = stick.transform.localPosition.y / magnMax;
             }
         }
         else
         {
             joystickSprite.enabled = false;
             stick.SetActive(false);
-            GameData.gd.AxisX = 0;
-            GameData.gd.AxisY = 0;
+            GameData.gd.f_axisX = 0;
+            GameData.gd.f_axisY = 0;
         }
 
     }
