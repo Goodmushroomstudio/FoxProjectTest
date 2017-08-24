@@ -19,35 +19,35 @@ public class controlp2 : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (GameData.gd.AxisY>0.95f && jump)
+        if (GameData.gd.f_axisY>0.95f && jump)
         {
             rb.AddForce(new Vector2(0, up), ForceMode2D.Impulse);
             jump = false;
             
         }
-        if (GameData.gd.AxisX < 0)
+        if (GameData.gd.f_axisX < 0)
         {
-            rb.AddForce(new Vector2(speed * GameData.gd.AxisX, 0), ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(speed * GameData.gd.f_axisX, 0), ForceMode2D.Impulse);
             rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, speedMin, speedMax), rb.velocity.y);
             transform.localScale = new Vector3(1, 1, 1);
         }
-        if (GameData.gd.AxisX > 0)
+        if (GameData.gd.f_axisX > 0)
         {
-            rb.AddForce(new Vector2(speed * GameData.gd.AxisX, 0), ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(speed * GameData.gd.f_axisX, 0), ForceMode2D.Impulse);
             rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, speedMin, speedMax), rb.velocity.y);
             transform.localScale = new Vector3(-1, 1, 1);
         }
-        if (GameData.gd.AxisX == 0)
+        if (GameData.gd.f_axisX == 0)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
-        if (GameData.gd.AxisX < 0)
+        if (GameData.gd.f_axisX < 0)
         {
-            focus.transform.localPosition = new Vector3(GameData.gd.AxisX * 10, focus.transform.localPosition.y); // динамическое изменение точки фокуса для камеры.
+            focus.transform.localPosition = new Vector3(GameData.gd.f_axisX * 10, focus.transform.localPosition.y); // динамическое изменение точки фокуса для камеры.
         }
         else
         {
-            focus.transform.localPosition = new Vector3(GameData.gd.AxisX * -10, focus.transform.localPosition.y);
+            focus.transform.localPosition = new Vector3(GameData.gd.f_axisX * -10, focus.transform.localPosition.y);
         }
     }
 

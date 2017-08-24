@@ -5,10 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public class GameData {
     public static GameData gd = new GameData();
-    public float AxisX, AxisY; // в Joystick
+    public float f_axisX, f_axisY; // в Joystick
     public GameData()
     {
-        AxisX = 0;
-        AxisY = 0;
+        f_axisX = 0;
+        f_axisY = 0;
     }
 }
