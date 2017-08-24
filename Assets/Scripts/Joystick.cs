@@ -27,7 +27,6 @@ public class Joystick : MonoBehaviour {
             if (joystickSprite.enabled && Input.mousePosition.x < Screen.width / 2)
             {
                 Vector2 magn = Input.mousePosition - joystickSprite.gameObject.transform.position; //вычисляем магнитуду между местом касания и текущей точкой курсора
-                stick.transform.position = Input.mousePosition;// присваиваем джойстику положение мыши
                 Vector2 newPoint = Vector2.ClampMagnitude(magn, magnMax); // проверяем что бы длина магнитуды была не более указанного значения (20f...30f) Если более, возвращаем точку в которой магнитуда максимальная
                 stick.transform.localPosition = newPoint;
                 GameData.gd.AxisX = stick.transform.localPosition.x / magnMax;
@@ -36,18 +35,8 @@ public class Joystick : MonoBehaviour {
         }
         else if (Input.GetMouseButton(0))
         {
-            if (Input.mousePosition.x < Screen.width / 2 && Input.GetMouseButtonDown(0))
-            {
-                transform.position = Input.mousePosition;
-                joystickSprite.enabled = true;
-                stick.SetActive(true);
-            }
             if (joystickSprite.enabled && Input.mousePosition.x < Screen.width / 2)
             {
-                Vector2 magn = Input.mousePosition - joystickSprite.gameObject.transform.position; //вычисляем магнитуду между местом касания и текущей точкой курсора
-                stick.transform.position = Input.mousePosition;// присваиваем джойстику положение мыши
-                Vector2 newPoint = Vector2.ClampMagnitude(magn, magnMax); // проверяем что бы длина магнитуды была не более указанного значения (20f...30f) Если более, возвращаем точку в которой магнитуда максимальная
-                stick.transform.localPosition = newPoint;
                 GameData.gd.AxisX = stick.transform.localPosition.x / magnMax;
                 GameData.gd.AxisY = stick.transform.localPosition.y / magnMax;
             }
@@ -60,17 +49,20 @@ public class Joystick : MonoBehaviour {
             GameData.gd.AxisY = 0;
         }
 
-        /*if (Input.GetKeyDown(KeyCode.A))
+    }
+
+    void Update()
+    {
+        if (Input.mousePosition.x < Screen.width / 2 && Input.GetMouseButtonDown(0))
         {
-            GameData.gd.AxisX = -1;
+            transform.position = Input.mousePosition;
+            joystickSprite.enabled = true;
+            stick.transform.localPosition = Input.mousePosition;
+            stick.SetActive(true);
         }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            GameData.gd.AxisX = 1;
-        }
-        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
-        {
-            GameData.gd.AxisX = 0;
-        } */
+        stick.transform.position = Input.mousePosition;// присваиваем джойстику положение мыши
+        Vector2 magn = Input.mousePosition - joystickSprite.gameObject.transform.position; //вычисляем магнитуду между местом касания и текущей точкой курсора
+        Vector2 newPoint = Vector2.ClampMagnitude(magn, magnMax); // проверяем что бы длина магнитуды была не более указанного значения (20f...30f) Если более, возвращаем точку в которой магнитуда максимальная
+        stick.transform.localPosition = newPoint;
     }
 }
