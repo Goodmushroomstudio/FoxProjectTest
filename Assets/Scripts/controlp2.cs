@@ -6,7 +6,6 @@ public class controlp2 : MonoBehaviour
     
     private Rigidbody2D rb;
     public float up, speed;
-    bool jump;
     public float speedMin, speedMax;
     GameObject focus;
 
@@ -19,11 +18,14 @@ public class controlp2 : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (GameData.gd.f_axisY>0.95f && jump)
+        if (GameData.gd.f_axisY>0.95f && GameData.gd.b_onGround)
         {
             rb.AddForce(new Vector2(0, up), ForceMode2D.Impulse);
-            jump = false;
-            
+            GameData.gd.b_onGround = false;  
+        }
+        if (GameData.gd.f_axisY < -0.95f && GameData.gd.b_onGround)
+        {
+            GameData.gd.b_onTurn = true;
         }
         if (GameData.gd.f_axisX < 0)
         {
@@ -49,13 +51,23 @@ public class controlp2 : MonoBehaviour
         {
             focus.transform.localPosition = new Vector3(GameData.gd.f_axisX * -10, focus.transform.localPosition.y);
         }
+
+        if (GameData.gd.b_onTurn)
+        {
+            if (transform.GetChild(0).transform.rotation.z >= 360)
+            {
+                transform.GetChild(0).transform.rotation.Set(0,0,0,0);
+                GameData.gd.b_onTurn = false;
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("ground"))
         {
-            jump = true;
+            GameData.gd.b_onGround = true;
         }
     }
+
 }
