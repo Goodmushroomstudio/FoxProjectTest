@@ -27,6 +27,7 @@ public class controlp2 : MonoBehaviour
         if (GameData.gd.f_axisY < -0.95f && GameData.gd.b_onGround)
         {
             GameData.gd.b_onTurn = true;
+            transform.GetChild(0).GetComponent<Animator>().Play("turn");
         }
         if (GameData.gd.f_axisX < 0)
         {

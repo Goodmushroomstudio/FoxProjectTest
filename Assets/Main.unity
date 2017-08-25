@@ -694,6 +694,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1247070993}
   - component: {fileID: 1247070994}
+  - component: {fileID: 1247070995}
   m_Layer: 0
   m_Name: MainSprite
   m_TagString: Untagged
@@ -756,6 +757,23 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!95 &1247070995
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1247070992}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 06d1dcff02f682142af10c3aee00464d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1350103511
 GameObject:
   m_ObjectHideFlags: 0
@@ -1118,8 +1136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c42e4506037ecaa49ac5f42debd46d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  f_hp: 100
-  f_sp: 100
   img_hp: {fileID: 1350103513}
   img_sp: {fileID: 1530566984}
 --- !u!1 &1723300072
@@ -1335,7 +1351,7 @@ Transform:
   m_GameObject: {fileID: 1887878456}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.0671667, y: 7.72, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 1247070993}
   - {fileID: 172384017}
