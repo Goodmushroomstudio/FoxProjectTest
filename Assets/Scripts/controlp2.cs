@@ -20,6 +20,7 @@ public class controlp2 : MonoBehaviour
 
         if (GameData.gd.f_axisY>0.95f && GameData.gd.b_onGround)
         {
+            GameData.gd.f_currentsp -= 10;
             rb.AddForce(new Vector2(0, up), ForceMode2D.Impulse);
             GameData.gd.b_onGround = false;  
         }
