@@ -21,4 +21,9 @@ public class Functions : MonoBehaviour {
     {
         GameData.gd.f_currenthp -= 10;
     }
+
+    public void TurnOff()
+    {
+        GameData.gd.b_onTurn = false;
+    }
 }

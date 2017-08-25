@@ -6,7 +6,6 @@ public class controlp2 : MonoBehaviour
     
     private Rigidbody2D rb;
     public float up, speed;
-    public float speedMin, speedMax;
     GameObject focus;
 
     void Start()
@@ -18,50 +17,44 @@ public class controlp2 : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (GameData.gd.f_axisY>0.95f && GameData.gd.b_onGround)
+        if (GameData.gd.f_axisY>0.95f && GameData.gd.b_onGround && !GameData.gd.b_onTurn)
         {
             GameData.gd.f_currentsp -= 10;
             rb.AddForce(new Vector2(0, up), ForceMode2D.Impulse);
             GameData.gd.b_onGround = false;  
         }
-        if (GameData.gd.f_axisY < -0.95f && GameData.gd.b_onGround)
+        if (GameData.gd.f_axisY < -0.95f && GameData.gd.b_onGround && !GameData.gd.b_onTurn)
         {
             GameData.gd.b_onTurn = true;
             transform.GetChild(0).GetComponent<Animator>().Play("turn");
+            GameData.gd.f_currentsp -= 20;
         }
-        if (GameData.gd.f_axisX < 0)
+        if (GameData.gd.f_axisX != 0 && !GameData.gd.b_onTurn)
         {
-            rb.AddForce(new Vector2(speed * GameData.gd.f_axisX, 0), ForceMode2D.Impulse);
-            rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, speedMin, speedMax), rb.velocity.y);
-            transform.localScale = new Vector3(1, 1, 1);
-        }
-        if (GameData.gd.f_axisX > 0)
-        {
-            rb.AddForce(new Vector2(speed * GameData.gd.f_axisX, 0), ForceMode2D.Impulse);
-            rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, speedMin, speedMax), rb.velocity.y);
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-        if (GameData.gd.f_axisX == 0)
-        {
-            rb.velocity = new Vector2(0, rb.velocity.y);
-        }
-        if (GameData.gd.f_axisX < 0)
-        {
-            focus.transform.localPosition = new Vector3(GameData.gd.f_axisX * 10, focus.transform.localPosition.y); // динамическое изменение точки фокуса для камеры.
-        }
-        else
-        {
-            focus.transform.localPosition = new Vector3(GameData.gd.f_axisX * -10, focus.transform.localPosition.y);
+            transform.Translate(new Vector3((GameData.gd.f_axisX*15)*Time.deltaTime,0));    
+            if (GameData.gd.f_axisX > 0 && !GameData.gd.b_onTurn)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
         }
 
         if (GameData.gd.b_onTurn)
         {
-            if (transform.GetChild(0).transform.rotation.z >= 360)
+            if (GameData.gd.f_axisX > 0)
             {
-                transform.GetChild(0).transform.rotation.Set(0,0,0,0);
-                GameData.gd.b_onTurn = false;
+                transform.Translate(new Vector3(15*Time.deltaTime,0,0));
+            }
+            if (GameData.gd.f_axisX < 0)
+            {
+                transform.Translate(new Vector3(-15*Time.deltaTime,0,0));
             }
         }
+
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
