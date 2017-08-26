@@ -64,5 +64,11 @@ public class controlp2 : MonoBehaviour
             GameData.gd.b_onGround = true;
         }
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("portal"))
+        {
+            Debug.Log("portal");
+        }
+    }
 }

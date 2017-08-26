@@ -13,6 +13,7 @@ public class GameData {
     public float f_currenthp;
     public float f_currentsp;// HpSp,Control
     public int i_currentChar;
+    public int i_currentRoom;
     public GameData()
     {
         i_currentChar = 0;
@@ -24,5 +25,6 @@ public class GameData {
         f_axisY = 0;
         b_onGround = false;
         b_onTurn = false;
+        i_currentRoom = 0;
     }
 }
