@@ -6,12 +6,10 @@ public class controlp2 : MonoBehaviour
     
     private Rigidbody2D rb;
     public float up, speed;
-    GameObject focus;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        focus = transform.GetChild(1).gameObject;
     }
 
     void FixedUpdate()
@@ -31,7 +29,7 @@ public class controlp2 : MonoBehaviour
         }
         if (GameData.gd.f_axisX != 0 && !GameData.gd.b_onTurn)
         {
-            transform.Translate(new Vector3((GameData.gd.f_axisX*15)*Time.deltaTime,0));    
+            transform.Translate(new Vector3((GameData.gd.f_axisX*speed)*Time.deltaTime,0));    
             if (GameData.gd.f_axisX > 0 && !GameData.gd.b_onTurn)
             {
                 transform.localScale = new Vector3(-1, 1, 1);

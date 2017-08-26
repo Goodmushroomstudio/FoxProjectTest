@@ -24,27 +24,21 @@ public class Joystick : MonoBehaviour {
                 joystickSprite.enabled = true;
                 stick.SetActive(true);
             }
-            if (joystickSprite.enabled)
+            if (joystickSprite.enabled && !GameData.gd.b_onTurn)
             {
                 Vector2 magn = Input.mousePosition - joystickSprite.gameObject.transform.position; //вычисляем магнитуду между местом касания и текущей точкой курсора
                 Vector2 newPoint = Vector2.ClampMagnitude(magn, magnMax); // проверяем что бы длина магнитуды была не более указанного значения (20f...30f) Если более, возвращаем точку в которой магнитуда максимальная
                 stick.transform.localPosition = newPoint;
-                if (!GameData.gd.b_onTurn)
-                {
-                    GameData.gd.f_axisX = stick.transform.localPosition.x / magnMax;
-                    GameData.gd.f_axisY = stick.transform.localPosition.y / magnMax;
-                }
+                GameData.gd.f_axisX = stick.transform.localPosition.x / magnMax;
+                GameData.gd.f_axisY = stick.transform.localPosition.y / magnMax;
             }
         }
         else if (Input.GetMouseButton(0))
         {
-            if (joystickSprite.enabled)
+            if (joystickSprite.enabled && !GameData.gd.b_onTurn)
             {
-                if (!GameData.gd.b_onTurn)
-                {
-                    GameData.gd.f_axisX = stick.transform.localPosition.x / magnMax;
-                    GameData.gd.f_axisY = stick.transform.localPosition.y / magnMax;
-                }
+                GameData.gd.f_axisX = stick.transform.localPosition.x / magnMax;
+                GameData.gd.f_axisY = stick.transform.localPosition.y / magnMax;
             }
         }
         else
