@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Functions : MonoBehaviour {
 
@@ -25,5 +26,11 @@ public class Functions : MonoBehaviour {
     public void TurnOff()
     {
         GameData.gd.b_onTurn = false;
+    }
+    public void SelectChar(int i)
+    {
+        GameData.gd.i_currentChar = i;
+        SceneManager.LoadScene(1);
+
     }
 }

@@ -11,3 +11,7 @@ Fox.csproj
 obj/Debug/Assembly-CSharp.csproj.FileListAbsolute.txt
 Assets/Main.unity
 Assets/Main.unity.meta
+Assets/Menu.unity.meta
+Assets/CharSelect.unity.meta
+Assets/CharSelect.unity
+Assets/Menu.unity
