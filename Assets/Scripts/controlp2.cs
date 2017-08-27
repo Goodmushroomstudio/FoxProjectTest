@@ -66,7 +66,7 @@ public class controlp2 : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("portal"))
         {
-            Debug.Log("portal");
+            transform.position = collision.gameObject.transform.parent.GetComponent<Room>().nextRoom;
         }
     }
 }

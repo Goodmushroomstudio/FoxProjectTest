@@ -8,14 +8,12 @@ public class LevelGeneration : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        GameData.gd.i_roomCount = i_roomcount;
         for (int i = 0; i<i_roomcount;i++)
         {
             GameObject newroom = Instantiate(room, new Vector3(i*100,0,0), Quaternion.identity, this.transform);
             newroom.name = "room"+i.ToString();
-            if (i != GameData.gd.i_currentRoom)
-            {
-                newroom.GetComponent<Room>().enabled = false;
-            }
+            newroom.GetComponent<Room>().roomNumber = i;
         } 
 
         

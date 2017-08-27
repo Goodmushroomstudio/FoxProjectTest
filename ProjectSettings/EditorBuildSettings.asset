@@ -5,6 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Main.unity
+  - enabled: 0
+    path: Assets/__DELETED_GUID_Trash/5ddd4e6aa5ac73e478f1e923bc60841e
     guid: 5ddd4e6aa5ac73e478f1e923bc60841e
