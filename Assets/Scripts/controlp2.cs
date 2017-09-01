@@ -24,7 +24,7 @@ public class controlp2 : MonoBehaviour
         if (GameData.gd.f_axisY < -0.95f && GameData.gd.b_onGround && !GameData.gd.b_onTurn)
         {
             GameData.gd.b_onTurn = true;
-            transform.GetChild(0).GetComponent<Animator>().Play("turn");
+            GetComponent<Animator>().Play("turn");
             GameData.gd.f_currentsp -= 20;
         }
         if (GameData.gd.f_axisX != 0 && !GameData.gd.b_onTurn)
@@ -64,9 +64,10 @@ public class controlp2 : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("portal"))
+        if (collision.gameObject.CompareTag("portal") && GameData.gd.i_enemyCount == 0)
         {
-            transform.position = collision.gameObject.transform.parent.GetComponent<Room>().nextRoom;
+            transform.position = collision.gameObject.transform.parent.GetComponent<Room>().nextRoom.transform.position;
+            GameData.gd.i_enemyCount = collision.gameObject.transform.parent.GetComponent<Room>().nextRoom.transform.parent.GetComponent<Room>().localEnemyCount;
         }
     }
 }

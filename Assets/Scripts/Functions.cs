@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Functions : MonoBehaviour {
-
+    GameObject player;
 	// Use this for initialization
 	void Start () {
-		
+        player = GameObject.Find("Player");
 	}
 	
 	// Update is called once per frame
@@ -27,10 +27,20 @@ public class Functions : MonoBehaviour {
     {
         GameData.gd.b_onTurn = false;
     }
+    public void Attack()
+    {
+        if (!GameData.gd.b_onTurn)
+        {
+            player.GetComponent<Animator>().Play("attack");
+        }
+    
+    }
     public void SelectChar(int i)
     {
         GameData.gd.i_currentChar = i;
         SceneManager.LoadScene(1);
-
     }
+
+
+
 }

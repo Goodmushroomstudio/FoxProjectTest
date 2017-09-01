@@ -5,11 +5,10 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
 
 
-    public GameObject focusObject;
-    Vector3 focus;
+    GameObject focusObject;
 	// Use this for initialization
 	void Start () {
-        
+        focusObject = GameObject.Find("Player").transform.GetChild(1).gameObject;
 	}
 	
 	// Update is called once per frame

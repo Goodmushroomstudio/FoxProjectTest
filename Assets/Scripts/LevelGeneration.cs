@@ -3,27 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelGeneration : MonoBehaviour {
-    public GameObject room;
+    public GameObject[] rooms;
+    public int[] mBossRoomNumbers;
     public int i_roomcount;
     public GameObject[] players;
 
-	// Use this for initialization
+    void Awake()
+    {
+        GameObject player = Instantiate(players[GameData.gd.i_currentChar], Vector3.zero, Quaternion.identity);
+        player.name = "Player";
+    }
+
 	void Start () {
         GameData.gd.i_roomCount = i_roomcount;
-        Instantiate(players[GameData.gd.i_currentChar], Vector3.zero, Quaternion.identity);
-        for (int i = 0; i<i_roomcount;i++)
+        for (int i = 0; i < i_roomcount; i++)
         {
-            GameObject newroom = Instantiate(room, new Vector3(i*100,0,0), Quaternion.identity, this.transform);
+            int r = Random.Range(0, 2);
+            GameObject newroom = Instantiate(rooms[r], new Vector3(i*200,0,0), Quaternion.identity, this.transform);
             newroom.name = "room"+i.ToString();
             newroom.GetComponent<Room>().roomNumber = i;
-        } 
-
-        
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+            for (int m = 0; m < mBossRoomNumbers.Length; m++)
+            {
+                if (i == mBossRoomNumbers[m])
+                {
+                    newroom.GetComponent<Room>().mBossRoom = true;
+                }
+            }
+            if (i + 1 == i_roomcount)
+            {
+                newroom.GetComponent<Room>().bossRoom = true;
+            }
+        }
 	}
 }

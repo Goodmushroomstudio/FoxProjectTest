@@ -15,6 +15,7 @@ public class GameData {
     public int i_currentChar;
     public int i_currentRoom;
     public int i_roomCount;
+    public int i_enemyCount;
     public GameData()
     {
         i_currentChar = 0;
@@ -28,5 +29,6 @@ public class GameData {
         b_onTurn = false;
         i_currentRoom = 0;
         i_roomCount = 0;
+        i_enemyCount = 0;
     }
 }
